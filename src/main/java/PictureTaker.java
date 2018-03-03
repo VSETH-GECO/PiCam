@@ -15,6 +15,7 @@ class PictureTaker extends TimerTask {
     public void run() {
         try {
             piCam.takeStill(String.format("%010d", picNum) + ".jpg");
+            System.out.println("pic " + picNum + " taken");
             picNum++;
 
         } catch (IOException e) {

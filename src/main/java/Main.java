@@ -1,33 +1,35 @@
 import com.hopding.jrpicam.RPiCamera;
+import com.hopding.jrpicam.enums.Encoding;
 import com.hopding.jrpicam.enums.Exposure;
 import com.hopding.jrpicam.exceptions.FailedToRunRaspistillException;
 
-import java.util.Timer;
+import java.io.IOException;
 
 /**
- * Idea: 
- * Captures images in a given interval and processes them to a video using ffmpeg.
+ * Sets up a rasperry pi camera and starts a timer to take
+ * a picture in a defined interval.
  */
 public class Main {
-    static int captureInterval = 1000;
+    // Interval in which to take the pictures
+    private static int captureInterval = 5000;
 
     public static void main(String[] args) {
-        try {
-            RPiCamera piCamera = new RPiCamera("/home/pi/Pictures");
+        while (true) {
+            try {
+                RPiCamera piCamera = new RPiCamera("/home/pi/nfs/pi-cam");
 
-            piCamera.setWidth(1920).setHeight(1080)
-                    .setBrightness(75)
-                    .setExposure(Exposure.AUTO);
+                piCamera.setWidth(1920).setHeight(1080)
+                        .setExposure(Exposure.AUTO);
 
-            PictureTaker picTaker = new PictureTaker(piCamera);
-            Timer timer = new Timer();
+                piCamera.setEncoding(Encoding.PNG)
+                        .setTimeout(10000);
 
-            timer.schedule(picTaker, 1000, captureInterval);
+                System.out.println("Setup complete; Starting timelapse...");
+                piCamera.timelapse(true, "%04d_timelapse.png", captureInterval);
 
-        } catch (FailedToRunRaspistillException e) {
-            e.printStackTrace();
+            } catch (FailedToRunRaspistillException | IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-
-
     }
 }
