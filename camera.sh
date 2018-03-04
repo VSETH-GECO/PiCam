@@ -7,7 +7,7 @@ if [ grep "start_x" /boot/config.txt ]; then
         echo "Enabling camera..."
         # enable camera
 
-        sed -i "s/startx_x=0/start_x=1/g" /boot/config.txt
+        sed -i "s/start_x=0/start_x=1/g" /boot/config.txt
 
 	echo "Camera enabled, reboot now please."
     	return 0
