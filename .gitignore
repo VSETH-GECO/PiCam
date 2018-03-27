@@ -1,6 +1,8 @@
 # Folders
 .idea
 target
+venv
 
 # Files
 *.iml
+*.mp4
