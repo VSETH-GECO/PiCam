@@ -44,7 +44,7 @@ parser = argparse.ArgumentParser(
     description='Records a timelapse video using the raspberry\'s camera module. Use ^C to stop recording.')
 parser.add_argument('-i', type=int, default=5, dest='interval',
                     help='Set the interval in which to take photos in seconds.')
-parser.add_argument('-t', type=int, default=0, dest='duration',
+parser.add_argument('-d', type=int, default=0, dest='duration',
                     help='Set the duration for which the timlapse should record in minutes, 0 for endless.')
 parser.add_argument('-o', type=str, dest='out_name',
                     default='./timelapse' + dt.datetime.now().strftime("%Y%m%d_%H%M%S") + '.mp4',
