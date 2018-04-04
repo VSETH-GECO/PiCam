@@ -16,11 +16,11 @@ def take_picture():
     """Takes a picture and pipes it into the stdin of the ffmpeg process"""
     global frame_no
 
-    #raspistill = sp.Popen(['raspistill', '-t', '1000',
-    #                       '-rot', '180',
-    #                       '-w', '1920',
-    #                       '-h', '1080',
-    #                       '-o', '-'], stdout=ffmpeg.stdin)
+    raspistill = sp.Popen(['raspistill', '-t', '1000',
+                           '-rot', '180',
+                           '-w', '1920',
+                           '-h', '1080',
+                           '-o', '-'], stdout=ffmpeg.stdin)
     frame_no += 1  # increment frame count
     sys.stdout.write('\rFrame: %i' % frame_no)
     sys.stdout.flush()
