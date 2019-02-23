@@ -19,10 +19,13 @@ if grep "start_x" /boot/config.txt ; then
 fi
 
 # check if all dependencies are installed
-sudo apt-get update && sudo apt-get install ffmpeg
+sudo apt-get update
+sudo apt-get install ffmpeg python3-pip
+
+pip3 install schedule twisted
 
 # setup done, inform user if restart is required
-if [ "$restart" -eq "1" ] ; then
+if [[ "$restart" -eq "1" ]] ; then
     echo "Setup completed. Please reboot now to finish camera setup"
 else
     echo "Setup completed. Begin timelapse by running python3 timelapse.py"
