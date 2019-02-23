@@ -32,4 +32,4 @@ Also you don't want your video to be corrupted if the power goes out. Because of
 the program writes 120-frame-chunks with their own metadata so you can only lose the
 last <120 frames at any given time. This may create a incorrect display of timecodes
 on some players so I recommend to re-encode the video after completion but it's not
-necessary for playback.
+necessary for playback. You can easily re-encode a video with `ffmpeg -i input.mp4 -c copy output.mp4`.
