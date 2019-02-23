@@ -6,12 +6,21 @@
 
 ## Usage
 Run with `python3 timelapse.py`  
+Run in background with `python3 timelapse.py & && disown`
 Get help by running `python3 timelapse.py --help`
+
+#### LEDs
+The timelapse program will take over the red and green status LEDs of the Raspberry to indicate it's own status. As long as everything is fine both LEDs will be off with the green lighting up when a picture is taken. When any error occurs the red LED will show and it't probably a good Idea to ssh into the Raspberry and check on the process.
+
+#### Server
+The timelapse program will start a lightweight webserver on port 8080 that will show the last picture taken by the camera. This could be usefull for setting up the Pi or occasionally checking up on the status.
 
 Advanced use:  
 `-i number` to set the interval between the pictures to the number in seconds. Default 5, not recommended to use < 3.  
 `-d number` to set the duration for which the timelapse should run before stopping automatically. Default 0, no auto stop.  
-`-o str` to set the name of the output file. Default is timelapse`date_time`.mp4
+`-o str` to set the name of the output file. Default is timelapse`date_time`.mp4  
+`--no-led` to disable the manipulation of the two status LEDs of the Pi by the program to show it's own status.  
+`--no-server` to disable the webserver running on port 8080 that shows the last picture taken.  
 
 ## About
 This project was developed by me as we wanted to record our lan party including setup and cleanup whithout having to
